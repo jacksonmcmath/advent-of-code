@@ -2,10 +2,60 @@
 
 [site](https://adventofcode.com/) | [subreddit](https://reddit.com/r/adventofcode/)
 
-> Advent of Code is an [Advent calendar](https://en.wikipedia.org/wiki/Advent_calendar) of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like.
+Advent of Code puzzle solutions written in elixir.
 
-## Solution Organization
+## Getting started
 
-Solutions are organized by language:
+Install dependencies:
 
-- [elixir](https://github.com/jacksonmcmath/advent-of-code/tree/elixir)
+```console
+mix deps.get
+```
+
+Save session token as configuration item:
+
+```elixir
+# config/config.exs
+import Config
+
+config :advent_of_code, AdventOfCode.Input, allow_network?: true
+
+import_config "secrets.exs"
+
+# config/secrets.exs
+import Config
+
+config :advent_of_code, AdventOfCode.Input,
+  session_token: "<session token>"
+```
+
+Or as the environment variable `SESSION_TOKEN`.
+
+Get solution for a particular year and day:
+
+```console
+mix solve <day> # defaults to current year
+mix solve <year> <day>
+mix solve --year <year> --day <day>
+```
+
+## Adding a new day
+
+Generate boilerplate for a particular year and day:
+
+```console
+mix gen <day> # defaults to current year
+mix gen <year> <day>
+mix gen --year <year> --day <day>
+```
+
+This generates a new solution module and corresponding test module.
+This also fetchs and caches the puzzle input from the server, if configured.
+
+## Testing
+
+```console
+mix test
+```
+
+

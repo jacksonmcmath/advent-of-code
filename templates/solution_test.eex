@@ -1,0 +1,27 @@
+defmodule AdventOfCode.Y<%= year %>.D<%= String.pad_leading(day, 2, "0") %>Test do
+  @moduledoc false
+  use ExUnit.Case
+
+  alias AdventOfCode.Y<%= year  %>.D<%= String.pad_leading(day, 2, "0") %>, as: Solution
+
+  @moduletag year: <%= year %>, day: <%= day %>
+
+  @tag skip: "not implemented"
+  test "Year <%= year %>, Day <%= String.pad_leading(day, 2, "0") %>, part_1/1" do
+    input = nil
+
+    assert Solution.part_1(input) == :not_implemented
+  end
+
+  @tag skip: "not implemented"
+  test "Year <%= year %>, Day <%= String.pad_leading(day, 2, "0") %>, part_2/1" do
+    input = nil
+
+    assert Solution.part_2(input) == :not_implemented
+  end
+
+  @tag skip: "not solved"
+  test "Year <%= year %>, Day <%= String.pad_leading(day, 2, "0") %>, run/0" do
+    assert Solution.run() == {:not_implemented, :not_implemented}
+  end
+end
