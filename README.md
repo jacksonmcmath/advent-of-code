@@ -29,7 +29,7 @@ config :advent_of_code, AdventOfCode.Input,
   session_token: "<session token>"
 ```
 
-Or as the environment variable `SESSION_TOKEN`.
+Or as the environment variable `AOC_SESSION_TOKEN`.
 
 Get solution for a particular year and day:
 

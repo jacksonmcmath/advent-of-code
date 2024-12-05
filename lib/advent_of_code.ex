@@ -121,6 +121,6 @@ defmodule AdventOfCode do
 
   defp config, do: Application.get_env(:advent_of_code, :inputs)
   defp allow_network?, do: Keyword.get(config(), :allow_network?, false)
-  defp session_token, do: Keyword.get(config(), :session_token, System.get_env("SESSION_TOKEN"))
+  defp session_token, do: Keyword.get(config(), :session_token, System.get_env("AOC_SESSION_TOKEN"))
   defp inputs_dir, do: config() |> Keyword.get(:inputs_dir, @default_inputs_dir) |> Path.expand()
 end
