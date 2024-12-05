@@ -3,14 +3,14 @@ defmodule AdventOfCode.Y2023.D05 do
   --- Day 5: If You Give A Seed A Fertilizer ---
   Puzzle Link: https://adventofcode.com/2023/day/5
   """
-  @behaviour AdventOfCode.Solution
+  @behaviour AdventOfCode.Puzzle
 
-  defp input(), do: AdventOfCode.Input.get!(2023, 5)
+  defp input(), do: AdventOfCode.get_input!(2023, 5)
 
-  @impl AdventOfCode.Solution
-  def run(), do: {part_1(input()), part_2(input())}
+  @impl AdventOfCode.Puzzle
+  def run(input \\ input()), do: {part_1(input), part_2(input)}
 
-  @impl AdventOfCode.Solution
+  @impl AdventOfCode.Puzzle
   def part_1(input) do
     {seeds, mappings} = parse_input(input)
 
@@ -19,7 +19,7 @@ defmodule AdventOfCode.Y2023.D05 do
     |> Enum.min()
   end
 
-  @impl AdventOfCode.Solution
+  @impl AdventOfCode.Puzzle
   def part_2(input) do
     {seeds, mappings} = parse_input(input)
 

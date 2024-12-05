@@ -3,19 +3,19 @@ defmodule AdventOfCode.Y<%= year %>.D<%= String.pad_leading(day, 2, "0") %> do
   <%= title %>
   Puzzle Link: https://adventofcode.com/<%= year %>/day/<%= day %>
   """
-  @behaviour AdventOfCode.Solution
+  @behaviour AdventOfCode.Puzzle
 
-  defp input(), do: AdventOfCode.Input.get!(<%= year %>, <%= day %>)
+  defp input(), do: AdventOfCode.get_input!(<%= year %>, <%= day %>)
 
-  @impl AdventOfCode.Solution
-  def run(), do: {part_1(input()), part_2(input())}
+  @impl AdventOfCode.Puzzle
+  def run(input \\ input()), do: {part_1(input), part_2(input)}
 
-  @impl AdventOfCode.Solution
+  @impl AdventOfCode.Puzzle
   def part_1(_input) do
     :not_implemented
   end
 
-  @impl AdventOfCode.Solution
+  @impl AdventOfCode.Puzzle
   def part_2(_input) do
     :not_implemented
   end

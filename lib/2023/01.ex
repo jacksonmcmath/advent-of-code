@@ -3,14 +3,14 @@ defmodule AdventOfCode.Y2023.D01 do
   --- Day 1: Trebuchet?! ---
   Puzzle Link: https://adventofcode.com/2023/day/1
   """
-  @behaviour AdventOfCode.Solution
+  @behaviour AdventOfCode.Puzzle
 
-  defp input(), do: AdventOfCode.Input.get!(2023, 1)
+  defp input(), do: AdventOfCode.get_input!(2023, 1)
 
-  @impl AdventOfCode.Solution
-  def run(), do: {part_1(input()), part_2(input())}
+  @impl AdventOfCode.Puzzle
+  def run(input \\ input()), do: {part_1(input), part_2(input)}
 
-  @impl AdventOfCode.Solution
+  @impl AdventOfCode.Puzzle
   def part_1(input) do
     input
     |> String.replace(~r"[^\d\n]", "")
@@ -19,7 +19,7 @@ defmodule AdventOfCode.Y2023.D01 do
     |> Enum.sum()
   end
 
-  @impl AdventOfCode.Solution
+  @impl AdventOfCode.Puzzle
   def part_2(input) do
     input
     |> replace_words_with_numbers()

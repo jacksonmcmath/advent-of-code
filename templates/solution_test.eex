@@ -1,6 +1,6 @@
 defmodule AdventOfCode.Y<%= year %>.D<%= String.pad_leading(day, 2, "0") %>Test do
   @moduledoc false
-  use ExUnit.Case
+  use ExUnit.Case, async: true
 
   alias AdventOfCode.Y<%= year  %>.D<%= String.pad_leading(day, 2, "0") %>, as: Solution
 

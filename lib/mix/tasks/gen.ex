@@ -6,9 +6,9 @@ defmodule Mix.Tasks.Gen do
 
   @impl Mix.Task
   def run(argv) do
-    {year, day} = AdventOfCode.Input.parse_args!(argv)
+    {year, day} = AdventOfCode.parse_args!(argv)
 
-    AdventOfCode.Input.get!(year, day)
+    AdventOfCode.get_input!(year, day)
 
     title = get_puzzle_title(year, day)
 

@@ -3,14 +3,14 @@ defmodule AdventOfCode.Y2023.D04 do
   --- Day 4: Scratchcards ---
   Puzzle Link: https://adventofcode.com/2023/day/4
   """
-  @behaviour AdventOfCode.Solution
+  @behaviour AdventOfCode.Puzzle
 
-  defp input(), do: AdventOfCode.Input.get!(2023, 4)
+  defp input(), do: AdventOfCode.get_input!(2023, 4)
 
-  @impl AdventOfCode.Solution
-  def run(), do: {part_1(input()), part_2(input())}
+  @impl AdventOfCode.Puzzle
+  def run(input \\ input()), do: {part_1(input), part_2(input)}
 
-  @impl AdventOfCode.Solution
+  @impl AdventOfCode.Puzzle
   def part_1(input) do
     input
     |> parse_input()
@@ -20,7 +20,7 @@ defmodule AdventOfCode.Y2023.D04 do
     end)
   end
 
-  @impl AdventOfCode.Solution
+  @impl AdventOfCode.Puzzle
   def part_2(input) do
     input = input |> parse_input()
     card_map = input |> Map.new(fn {id, _} -> {id, 1} end)

@@ -3,14 +3,14 @@ defmodule AdventOfCode.Y2023.D06 do
   --- Day 6: Wait For It ---
   Puzzle Link: https://adventofcode.com/2023/day/6
   """
-  @behaviour AdventOfCode.Solution
+  @behaviour AdventOfCode.Puzzle
 
-  defp input(), do: AdventOfCode.Input.get!(2023, 6)
+  defp input(), do: AdventOfCode.get_input!(2023, 6)
 
-  @impl AdventOfCode.Solution
-  def run(), do: {part_1(input()), part_2(input())}
+  @impl AdventOfCode.Puzzle
+  def run(input \\ input()), do: {part_1(input), part_2(input)}
 
-  @impl AdventOfCode.Solution
+  @impl AdventOfCode.Puzzle
   def part_1(input) do
     input
     |> parse_input()
@@ -23,7 +23,7 @@ defmodule AdventOfCode.Y2023.D06 do
     |> Enum.reduce(1, &(&1 * &2))
   end
 
-  @impl AdventOfCode.Solution
+  @impl AdventOfCode.Puzzle
   def part_2(input) do
     {time, dist} = input |> parse_input_correctly()
 

@@ -6,7 +6,7 @@ defmodule Mix.Tasks.Solve do
 
   @impl Mix.Task
   def run(argv) do
-    {year, day} = AdventOfCode.Input.parse_args!(argv)
+    {year, day} = AdventOfCode.parse_args!(argv)
 
     case AdventOfCode.solve(year, day) do
       {:ok, {part_1, part_2}} -> Mix.shell().info("Part 1: #{part_1}\tPart 2: #{part_2}")

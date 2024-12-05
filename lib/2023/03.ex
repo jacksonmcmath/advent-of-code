@@ -3,27 +3,29 @@ defmodule AdventOfCode.Y2023.D03 do
   --- Day 3: Gear Ratios ---
   Puzzle Link: https://adventofcode.com/2023/day/3
   """
-  @behaviour AdventOfCode.Solution
+  @behaviour AdventOfCode.Puzzle
 
-  defp input(), do: AdventOfCode.Input.get!(2023, 3)
+  alias AdventOfCode.Input.Grid
 
-  @impl AdventOfCode.Solution
-  def run(), do: {part_1(input()), part_2(input())}
+  defp input(), do: AdventOfCode.get_input!(2023, 3)
 
-  @impl AdventOfCode.Solution
+  @impl AdventOfCode.Puzzle
+  def run(input \\ input()), do: {part_1(input), part_2(input)}
+
+  @impl AdventOfCode.Puzzle
   def part_1(input) do
     input
     |> parse_input()
     |> Enum.reduce(0, fn {part_num, _, _}, acc -> acc + part_num end)
   end
 
-  @impl AdventOfCode.Solution
+  @impl AdventOfCode.Puzzle
   def part_2(input) do
     input
     |> parse_input()
-    |> Enum.map(fn {part_num, _, gear} -> {part_num, Enum.uniq(gear)} end)
-    |> Enum.flat_map(fn {num, gears} -> Enum.map(gears, &{&1, num}) end)
-    |> Enum.group_by(fn {a, _} -> a end, fn {_, b} -> b end)
+    |> Enum.map(fn {part_num, _, gears} -> {part_num, Enum.uniq(gears)} end)
+    |> Enum.flat_map(fn {part_num, gears} -> Enum.map(gears, &{&1, part_num}) end)
+    |> Enum.group_by(fn {gear, _} -> gear end, fn {_, part_num} -> part_num end)
     |> Enum.reduce(0, fn
       {_, [a, b]}, acc -> a * b + acc
       _, acc -> acc
@@ -31,33 +33,16 @@ defmodule AdventOfCode.Y2023.D03 do
   end
 
   defp parse_input(input) do
-    grid =
-      input
-      |> String.split("\n", trim: true)
-      |> Enum.map(&String.graphemes/1)
-      |> grid_map()
+    grid = Grid.from_text(input)
 
     0..(grid |> Map.keys() |> Enum.max() |> elem(0))
     |> Enum.flat_map(&collect_all(grid, &1))
-    |> Enum.filter(fn {_, n, _} -> n == true end)
-  end
-
-  defp grid_map(matrix) do
-    for {row, r} <- Enum.with_index(matrix),
-        {cell, c} <- Enum.with_index(row),
-        into: %{} do
-      {{r, c}, cell}
-    end
-  end
-
-  defp get_surrounding({x, y}) do
-    [{1, 0}, {-1, 0}, {0, 1}, {0, -1}, {1, 1}, {-1, -1}, {1, -1}, {-1, 1}]
-    |> Enum.map(fn {dx, dy} -> {x + dx, y + dy} end)
+    |> Enum.filter(fn {_, part?, _} -> part? == true end)
   end
 
   defp part?(grid, pos) do
     pos
-    |> get_surrounding()
+    |> Grid.surrounding_8()
     |> Enum.map(&grid[&1])
     |> Enum.reject(&(is_nil(&1) || MapSet.member?(MapSet.new(~w[. 1 2 3 4 5 6 7 8 9 0]), &1)))
     |> Enum.empty?()
@@ -66,7 +51,7 @@ defmodule AdventOfCode.Y2023.D03 do
 
   defp get_gears(grid, pos) do
     pos
-    |> get_surrounding()
+    |> Grid.surrounding_8()
     |> Enum.filter(&(grid[&1] == "*"))
   end
 

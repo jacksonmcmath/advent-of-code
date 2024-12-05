@@ -1,6 +1,6 @@
 defmodule AdventOfCode.Y2023.D02Test do
   @moduledoc false
-  use ExUnit.Case
+  use ExUnit.Case, async: true
 
   alias AdventOfCode.Y2023.D02, as: Solution
 
