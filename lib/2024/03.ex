@@ -46,10 +46,10 @@ defmodule AdventOfCode.Y2024.D03 do
   end
 
   defp parse_instruction(instruction) do
-    [_operation, rest] = String.split(instruction, "(")
-    [lhs, rest] = String.split(rest, ",")
-    [rhs, _rest] = String.split(rest, ")")
-
-    String.to_integer(lhs) * String.to_integer(rhs)
+    instruction
+    |> String.replace(["mul(", ")"], "")
+    |> String.split(",")
+    |> Enum.map(&String.to_integer/1)
+    |> Enum.reduce(&(&1 * &2))
   end
 end
