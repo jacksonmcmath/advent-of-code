@@ -1,0 +1,46 @@
+defmodule AdventOfCode.Y2024.D06Test do
+  @moduledoc false
+  use ExUnit.Case, async: true
+
+  alias AdventOfCode.Y2024.D06, as: Solution
+
+  @moduletag year: 2024, day: 6
+
+  test "Year 2024, Day 06, part_1/1" do
+    input = """
+    ....#.....
+    .........#
+    ..........
+    ..#.......
+    .......#..
+    ..........
+    .#..^.....
+    ........#.
+    #.........
+    ......#...
+    """
+
+    assert Solution.part_1(input) == 41
+  end
+
+  test "Year 2024, Day 06, part_2/1" do
+    input = """
+    ....#.....
+    .........#
+    ..........
+    ..#.......
+    .......#..
+    ..........
+    .#..^.....
+    ........#.
+    #.........
+    ......#...
+    """
+
+    assert Solution.part_2(input) == 6
+  end
+
+  test "Year 2024, Day 06, run/0" do
+    assert Solution.run() == {5242, 1424}
+  end
+end
